@@ -1,3 +1,4 @@
+# https://tech.mof-mof.co.jp/blog/grahpql-ruby-03/
 overwrite: true
 schema: './schema/*.graphql'
 generates:

@@ -7,10 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen": "graphql-codegen --config codegen.yml --watch"
+    "gen": "graphql-codegen --config codegen.yml",
+    "gen:watch": "graphql-codegen --config codegen.yml --watch"
   },
   "dependencies": {
     "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18"
