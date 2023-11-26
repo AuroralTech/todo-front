@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { GraphQLClient } from 'graphql-request';
-import { Mutation, MutationAddTodoArgs, Query, TodoItem, TodoList } from '@/gql/graphql';
+import { GraphQLClient, gql } from 'graphql-request';
+import { Mutation, MutationAddTodoArgs, Query, TodoItem } from '@/gql/graphql';
 
 export default function Page() {
   const BASE_GRAPHQL_ENDPOINT = 'http://127.0.0.1:4000/graphql';
@@ -12,17 +12,17 @@ export default function Page() {
 
   useEffect(() => {
     client
-      .request<Query>(
-        `{
-        todoList {
-          items {
-            id
-            task
-            is_completed
+      .request<Query>(gql`
+        {
+          todoList {
+            items {
+              id
+              task
+              is_completed
+            }
           }
         }
-      }`
-      )
+      `)
       .then((data) => {
         setTodos(data.todoList.items);
       });
@@ -37,13 +37,15 @@ export default function Page() {
     };
 
     client.request<Mutation, MutationAddTodoArgs>(
-      `mutation addTodo($input: TodoItemInput!) {
-        addTodo(input: $input) {
-          id
-          task
-          is_completed
+      gql`
+        mutation addTodo($input: TodoItemInput!) {
+          addTodo(input: $input) {
+            id
+            task
+            is_completed
+          }
         }
-      }`,
+      `,
       variables
     );
   };
