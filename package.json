@@ -6,14 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen": "graphql-codegen --config codegen.yml --watch"
   },
   "dependencies": {
+    "graphql": "^16.8.1",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-codegen/typed-document-node": "^5.0.1",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@parcel/watcher": "^2.3.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -21,9 +29,9 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "postcss": "^8",
-    "tailwindcss": "^3.3.0",
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
+    "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
 }
