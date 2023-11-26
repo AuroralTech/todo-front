@@ -9,7 +9,11 @@ const initialState = {
 export const SubmitButton = () => {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" className="ml-2 rounded-lg border bg-green-400 p-2 disabled:bg-green-950" disabled={pending}>
+    <button
+      type="submit"
+      className="ml-2 rounded-lg border bg-green-400 p-2 text-white disabled:bg-green-950"
+      disabled={pending}
+    >
       追加
     </button>
   );

@@ -9,7 +9,11 @@ const initialState = {
 const DeleteButton = () => {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" className="ml-2 rounded-lg border bg-red-400 p-1 disabled:bg-red-950" disabled={pending}>
+    <button
+      type="submit"
+      className="ml-2 rounded-lg border bg-red-400 p-1 text-white disabled:bg-red-950"
+      disabled={pending}
+    >
       削除
     </button>
   );
