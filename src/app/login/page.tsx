@@ -1,7 +1,7 @@
 import { LoginForm } from '@/ui/LoginForm';
 import { Suspense } from 'react';
 
-const Page = () => {
+const Login = () => {
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
@@ -11,4 +11,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Login;

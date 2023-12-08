@@ -1,6 +1,7 @@
 'use client';
-import { updateTodo } from '@/app/actions/updateTodo';
+import { updateTodo } from '@/actions/updateTodo';
 import { TodoItem } from '@/gql/graphql';
+import { useAuth } from '@/hooks/useAuth';
 import { useFormState, useFormStatus } from 'react-dom';
 
 const initialState = {
@@ -20,10 +21,12 @@ const UpdateText = (props: Props) => {
 };
 
 export const TodoUpdateText = (props: Props) => {
-  const { id, task, is_completed } = props.todo;
+  const { id, is_completed } = props.todo;
+  const { token } = useAuth();
   const [state, formAction] = useFormState(updateTodo, initialState);
   return (
     <form action={formAction} className="flex-grow">
+      <input type="hidden" name="token" value={token} />
       <input type="hidden" name="id" value={id} />
       <input type="hidden" name="is_completed" value={`${is_completed}`} />
       <UpdateText todo={props.todo} />
