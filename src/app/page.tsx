@@ -2,8 +2,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { GraphQLClient, gql } from 'graphql-request';
 import { Mutation, MutationAddTodoArgs, Query, TodoItem } from '@/gql/graphql';
+import useAuth from './actions/useAuth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Page() {
+  const { auth } = useAuth();
   const BASE_GRAPHQL_ENDPOINT = 'http://127.0.0.1:4000/graphql';
   const client = new GraphQLClient(BASE_GRAPHQL_ENDPOINT);
 
@@ -50,10 +53,29 @@ export default function Page() {
     );
   };
 
+  const loginUser = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, 'test@test.com', 'password');
+      alert('ログインしました');
+    } catch (error) {
+      alert('ログインに失敗しました');
+    }
+  };
+
   return (
     <main className="flex min-h-screen items-center justify-center">
       <div className="w-1/3">
-        <h1 className="text-2xl font-bold text-blue-500">Todoアプリ</h1>
+        <div className="my-4 flex">
+          <h1 className="text-2xl font-bold text-blue-500">Todoアプリ</h1>
+          <button
+            className="ml-10 rounded-lg border bg-blue-400 p-2"
+            onClick={() => {
+              loginUser();
+            }}
+          >
+            ログイン
+          </button>
+        </div>
         <div className="flex">
           <input className="rounded-lg border p-2" type="textarea" ref={inputRef} />
           <button

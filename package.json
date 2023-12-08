@@ -11,6 +11,7 @@
     "gen:watch": "graphql-codegen --config codegen.yml --watch"
   },
   "dependencies": {
+    "firebase": "^10.7.1",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "next": "14.0.3",

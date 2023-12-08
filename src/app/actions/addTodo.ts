@@ -10,7 +10,10 @@ type AddTodoReturn = {
 export const addTodo = async (prevState: AddTodoReturn, formData: FormData) => {
   const BASE_GRAPHQL_ENDPOINT = 'http://127.0.0.1:4000/graphql';
   const client = new GraphQLClient(BASE_GRAPHQL_ENDPOINT);
-  client.setHeader('Authorization', `Bearer MY_TOKEN`);
+  const token = (formData.get('token') as string) ?? '';
+  console.log('token:', token);
+
+  client.setHeader('Authorization', `Bearer ${token}`);
   formData.append('is_completed', 'false');
   const task = (formData.get('task') as string) ?? '';
   const is_completed = false;
