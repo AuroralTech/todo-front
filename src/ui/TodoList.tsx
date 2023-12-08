@@ -1,23 +1,10 @@
-import { Query } from '@/gql/graphql';
-import { gql } from 'graphql-request';
 import { TodoDeleteForm } from './TodoDeleteForm';
 import { TodoUpdateText } from './TodoUpdateText';
-import { getClient } from '@/actions/getClient';
+import { getTodoList } from '@/actions/getTodoList';
 
 export const TodoList = async () => {
-  const { client } = await getClient('');
+  const { res } = await getTodoList('');
 
-  const res = await client.request<Query>(gql`
-    {
-      todoList {
-        items {
-          id
-          task
-          is_completed
-        }
-      }
-    }
-  `);
   return (
     <div>
       {res &&
