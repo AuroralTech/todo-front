@@ -8,8 +8,8 @@ type DeleteTodoReturn = {
   message: string;
 };
 
-export const deleteTodo = async (prevState: DeleteTodoReturn, formData: FormData) => {
-  const { client } = await getClient((formData.get('token') as string) ?? '');
+export const deleteTodo = async (token: string, prevState: DeleteTodoReturn, formData: FormData) => {
+  const { client } = await getClient(token);
   const id = (formData.get('id') as string) ?? '';
   const todo = (formData.get('todo') as string) ?? '';
 

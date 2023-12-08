@@ -8,8 +8,8 @@ type UpdateTodoReturn = {
   message: string;
 };
 
-export const updateTodo = async (prevState: UpdateTodoReturn, formData: FormData) => {
-  const { client } = await getClient((formData.get('token') as string) ?? '');
+export const updateTodo = async (token: string, prevState: UpdateTodoReturn, formData: FormData) => {
+  const { client } = await getClient(token);
   const id = (formData.get('id') as string) ?? '';
   const task = (formData.get('task') as string) ?? '';
   const is_completed = (formData.get('is_completed') as string) ?? '';

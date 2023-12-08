@@ -8,8 +8,8 @@ type AddTodoReturn = {
   message: string;
 };
 
-export const addTodo = async (prevState: AddTodoReturn, formData: FormData) => {
-  const { client } = await getClient((formData.get('token') as string) ?? '');
+export const addTodo = async (token: string, prevState: AddTodoReturn, formData: FormData) => {
+  const { client } = await getClient(token);
   formData.append('is_completed', 'false');
   const task = (formData.get('task') as string) ?? '';
   const is_completed = false;

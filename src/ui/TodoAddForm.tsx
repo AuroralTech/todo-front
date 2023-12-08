@@ -21,11 +21,11 @@ export const SubmitButton = () => {
 };
 export const TodoAddForm = () => {
   const { token } = useAuth();
-  const [state, formAction] = useFormState(addTodo, initialState);
+  const addTodoWithToken = addTodo.bind(null, token);
+  const [state, formAction] = useFormState(addTodoWithToken, initialState);
 
   return (
     <form className="flex" action={formAction}>
-      <input type="hidden" name="token" value={token} />
       <input className="rounded-lg border p-2" type="textarea" id="task" name="task" />
       <SubmitButton />
       <p className="sr-only" role="status" aria-live="polite">
