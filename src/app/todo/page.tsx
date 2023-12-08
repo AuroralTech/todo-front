@@ -1,5 +1,5 @@
-import { TodoAddForm } from '@/components/TodoAddForm';
-import { TodoList } from '@/components/TodoList';
+import { TodoAddForm } from '@/ui/TodoAddForm';
+import { TodoList } from '@/ui/TodoList';
 import { Suspense } from 'react';
 
 const Todo = () => {

@@ -1,11 +1,11 @@
 import { Query } from '@/gql/graphql';
-import { GraphQLClient, gql } from 'graphql-request';
+import { gql } from 'graphql-request';
 import { TodoDeleteForm } from './TodoDeleteForm';
 import { TodoUpdateText } from './TodoUpdateText';
+import { getClient } from '@/actions/getClient';
 
 export const TodoList = async () => {
-  const BASE_GRAPHQL_ENDPOINT = 'http://127.0.0.1:4000/graphql';
-  const client = new GraphQLClient(BASE_GRAPHQL_ENDPOINT);
+  const { client } = await getClient('');
 
   const res = await client.request<Query>(gql`
     {

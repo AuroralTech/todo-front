@@ -1,5 +1,6 @@
 'use client';
-import { deleteTodo } from '@/app/actions/deleteTodo';
+import { deleteTodo } from '@/actions/deleteTodo';
+import { useAuth } from '@/hooks/useAuth';
 import { useFormState, useFormStatus } from 'react-dom';
 
 const initialState = {
@@ -20,9 +21,11 @@ const DeleteButton = () => {
 };
 
 export const TodoDeleteForm = ({ id, todo }: { id: string; todo: string }) => {
+  const { token } = useAuth();
   const [state, formAction] = useFormState(deleteTodo, initialState);
   return (
     <form action={formAction}>
+      <input type="hidden" name="token" value={token} />
       <input type="hidden" name="id" value={id} />
       <input type="hidden" name="todo" value={todo} />
       <DeleteButton />
