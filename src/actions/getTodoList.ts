@@ -1,4 +1,4 @@
-import { Query } from 'firebase/database';
+'use server';
 import { gql } from 'graphql-request';
 import { getClient } from './getClient';
 import { TodoList } from '@/gql/graphql';
