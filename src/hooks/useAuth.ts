@@ -1,8 +1,8 @@
 'use client';
 
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useState, useEffect } from 'react';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { useState, useEffect, useCallback } from 'react';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -33,5 +33,14 @@ export const useAuth = () => {
     };
   }, [auth]);
 
-  return { auth, token };
+  const logout = useCallback(async () => {
+    try {
+      await signOut(auth);
+      setToken(''); // ログアウト時にトークンをクリア
+    } catch (error) {
+      console.error('ログアウトに失敗しました:', error);
+    }
+  }, [auth]);
+
+  return { auth, token, logout };
 };
